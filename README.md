@@ -1,0 +1,47 @@
+# dprive-nginx-bind
+
+## DPRIVE Container
+
+
+This Docker container implements a [DPRIVE](https://datatracker.ietf.org/wg/dprive/documents/) [RFC 7858](https://datatracker.ietf.org/doc/rfc7858/) server by running [NGINX](nginx.org) as a TLS proxy in front of [ISC BIND](https://www.isc.org/downloads/bind/).
+
+It listens on both the official DPRIVE port (853), and also on port 443 (as a test / proof-of-concept). 
+
+### Known issues / limitations
+This Dockerfile is based on Ubuntu and uses the Ubuntu BIND and NGINX packages. When I have more time, I'm planning on making new images which builds BIND and NGINX instead of using the packages.
+
+
+
+### Installation
+
+1. Install [Docker](https://www.docker.com/).
+2. Run `make`
+3. Edit `docker-compose.yml` and update to your IP addresses and where you mount the exposed volumes.
+4. Start container: `docker-compose up dprive-nginx-bind -d`
+
+#### Customization
+
+1. The `Makefile` copies the contents of `./files/config/` to `DOCKER_DATA` (/tank/data/docker on my machines). I have removed the `wildcard_snozzages.com.key`, `rnfc.conf` and `rndc.key` files from the repo.
+2. Replace the IP address in `docker-compose.yml` with your IP (or remove the IP if you don't bind to a specific IP), update the `/tank/data/docker/dprive-nginx-bind` directory to wherever you mount Docker volumes.
+
+
+#### Usage
+
+Start:
+
+    docker-compose up  -d
+    
+Stop:
+    
+    docker-compose kill
+    
+Attach to container:
+
+	docker exec -it compose_dprive-nginx-bind_1 bash
+
+#### Client
+Included in `stubby-snozzages.conf` is a [Stubby] (https://portal.sinodun.com/wiki/display/TDNS/DNS+Privacy+daemon+-+Stubby) config file to talk to a test container which I'm running. Generating the `tls_pubkey_pinset` is a little tricky. Here is the cheat:
+
+	openssl x509 -noout -in wildcard_snozzages.com.crt  -pubkey | openssl asn1parse -noout -inform pem -out public.key
+	openssl dgst -sha256 -hex public.key | awk -F '= ' '{print "0x"$2}' 
+    

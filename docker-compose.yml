@@ -1,0 +1,12 @@
+  dprive-nginx-bind:
+    restart: always
+    image: dprive-nginx-bind
+    ports:
+      - "204.194.23.68:853:853/tcp"
+      - "204.194.23.68:443:443/tcp"
+    volumes:
+      - /tank/data/docker/dprive-nginx-bind/etc/nginx/certificates:/etc/nginx/certificates
+      - /tank/data/docker/dprive-nginx-bind/var/log/nginx:/var/log/nginx
+      - /tank/data/docker/dprive-nginx-bind/var/named:/var/named
+
+

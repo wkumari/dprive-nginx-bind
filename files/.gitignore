@@ -1,0 +1,6 @@
+# Don't put private keys in the repo.
+# This includes private keys for certs, and also rndc.key
+*.key
+
+# Also ignore rndc.conf
+rndc.conf
