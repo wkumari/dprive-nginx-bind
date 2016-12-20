@@ -44,4 +44,7 @@ Included in `stubby-snozzages.conf` is a [Stubby] (https://portal.sinodun.com/wi
 
 	openssl x509 -noout -in wildcard_snozzages.com.crt  -pubkey | openssl asn1parse -noout -inform pem -out public.key
 	openssl dgst -sha256 -hex public.key | awk -F '= ' '{print "0x"$2}' 
-    
+  
+  
+#### Credits
+This is largely based on the [Sinodun](https://www.sinodun.com/) [Using a TLS proxy] (https://portal.sinodun.com/wiki/display/TDNS/Using+a+TLS+proxy) config, converted to be a container. 
