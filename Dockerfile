@@ -22,6 +22,12 @@ COPY files/nginx.conf /etc/nginx/nginx.conf
 # and my startup script.
 COPY files/entrypoint.sh /sbin/entrypoint.sh
 
+# I used to mount various volumes so that I can more easily expose things
+# like statistics, etc. This violates the container ethos and so I now just
+# copy things into the container.
+COPY files/config /
+
+
 # Make sure they are owned by the right users, and make my BIND dirs.
 RUN \
        chown -R www-data:www-data /var/lib/nginx \
@@ -38,7 +44,7 @@ RUN rm /etc/bind/rndc.key
 # /etc/nginx is for things like nginx configs, including certificates
 # /var/log/nginx is for logs.
 # /var/data/bind is random bind data
-VOLUME ["/etc/nginx/certificates", "/var/log/nginx", "/var/named"]
+#VOLUME ["/etc/nginx/certificates", "/var/log/nginx", "/var/named"]
 
 # Expose ports.
 # I run DPRIVE on both the "official" port (853) and also 443 as a proof of concept.

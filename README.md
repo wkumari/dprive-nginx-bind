@@ -7,6 +7,8 @@ This Docker container implements a [DPRIVE](https://datatracker.ietf.org/wg/dpri
 
 It listens on both the official DPRIVE port (853), and also on port 443 (as a test / proof-of-concept). 
 
+The container builds on both Ubuntu 16.04 and OS X Sierra, and deploys on Ubuntu, Google 
+
 ### Known issues / limitations
 This Dockerfile is based on Ubuntu and uses the Ubuntu BIND and NGINX packages. When I have more time, I'm planning on making new images which builds BIND and NGINX instead of using the packages.
 
@@ -16,7 +18,7 @@ This Dockerfile is based on Ubuntu and uses the Ubuntu BIND and NGINX packages. 
 
 1. Install [Docker](https://www.docker.com/).
 2. Run `make`
-3. Edit `docker-compose.yml` and update to your IP addresses and where you mount the exposed volumes.
+3. Edit `docker-compose.yml` and update to your IP addresses
 4. Start container: `docker-compose up dprive-nginx-bind -d`
 
 #### Customization
@@ -46,5 +48,25 @@ Included in `stubby-snozzages.conf` is a [Stubby] (https://portal.sinodun.com/wi
 	openssl dgst -sha256 -hex public.key | awk -F '= ' '{print "0x"$2}' 
   
   
+  
+#### Release notes / changelog
+V0.2.0:
+
+* Moar containerized
+* Self-contained for Google Container Engine / Amazon ECS
+  * No longer exposes volumes, makefile much simpler
+
+
+V0.1.0: Initial Release
+
+* Docker container which puts NGINX (as a TLS Proxy) in front of BIND
+* Uses NGINX and ISC BIND packages
+* Listens on both TCP 853 (domain-s) and 433 (https)
+* Exports statistics and similar to volumes
+
+
+  
 #### Credits
 This is largely based on the [Sinodun](https://www.sinodun.com/) [Using a TLS proxy] (https://portal.sinodun.com/wiki/display/TDNS/Using+a+TLS+proxy) config, converted to be a container. 
+
+
