@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: dprive-nginx-bind
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: dprive-nginx-bind
+    spec:
+      containers:
+      - image: us.gcr.io/dprive-nginx-bind:latest
+        imagePullPolicy: Always
+        name: dprive-nginx-bind
+        terminationMessagePath: /dev/termination-log
+        ports:
+          - containerPort: 853
+            name: domain-s
+          - containerPort: 443
+            name: https
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 1
+  observedGeneration: 2
+  replicas: 1
+  updatedReplicas: 1
