@@ -10,7 +10,7 @@ spec:
         run: dprive-nginx-bind
     spec:
       containers:
-      - image: us.gcr.io/dprive-nginx-bind:latest
+      - image: us.gcr.io/dprive-nginx-bind/dprive-nginx-bind
         imagePullPolicy: Always
         name: dprive-nginx-bind
         terminationMessagePath: /dev/termination-log
