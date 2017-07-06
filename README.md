@@ -161,6 +161,6 @@ V0.1.0: Initial Release
 
   
 #### Credits
-This is largely based on the [Sinodun](https://www.sinodun.com/) [Using a TLS proxy] (https://portal.sinodun.com/wiki/display/TDNS/Using+a+TLS+proxy) config, converted to be a container. 
+This is largely based on the [Sinodun](https://www.sinodun.com/) [Using a TLS proxy] (https://dnsprivacy.org/wiki/display/DP/Using+a+TLS+proxy) config, converted to be a container. 
 
 
