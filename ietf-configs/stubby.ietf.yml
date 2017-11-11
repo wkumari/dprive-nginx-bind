@@ -1,0 +1,33 @@
+resolution_type: GETDNS_RESOLUTION_STUB
+dns_transport_list:
+  - GETDNS_TRANSPORT_TLS
+tls_authentication: GETDNS_AUTHENTICATION_REQUIRED
+tls_query_padding_blocksize: 256
+edns_client_subnet_private : 1
+round_robin_upstreams: 1
+listen_addresses:
+  - 127.0.0.1
+  - 0::1
+idle_timeout: 10000
+upstream_recursive_servers:
+  - address_data: 31.130.229.6
+    tls_auth_name: "services-1.meeting.ietf.org"
+    tls_pubkey_pinset:
+      - digest: "sha256"
+        value: nof2qyLqRT8vfq63FQU4OUyN0uzmn6PJZEKVfIc2b7Y=
+  - address_data: 31.130.229.7
+    tls_auth_name: "services-2.meeting.ietf.org"
+    tls_pubkey_pinset:
+      - digest: "sha256"
+        value: qd9LB8AEWENmnV0+bdvkCjG85yRe36vGZ2GoUbIcdls=
+  - address_data: 2001:67c:370:229::6
+    tls_auth_name: "services-1.meeting.ietf.org"
+    tls_pubkey_pinset:
+      - digest: "sha256"
+        value: nof2qyLqRT8vfq63FQU4OUyN0uzmn6PJZEKVfIc2b7Y=
+  - address_data: 2001:67c:370:229::7
+    tls_auth_name: "services-2.meeting.ietf.org"
+    tls_pubkey_pinset:
+      - digest: "sha256"
+        value: qd9LB8AEWENmnV0+bdvkCjG85yRe36vGZ2GoUbIcdls=
+ 
