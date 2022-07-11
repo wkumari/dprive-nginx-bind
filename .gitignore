@@ -1,7 +1,0 @@
-# Things to ignore!
-# Ignore emacs backup files.
-*~
-\#*\#
-
-# And my release script
-release.sh
